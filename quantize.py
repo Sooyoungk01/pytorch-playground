@@ -13,8 +13,8 @@ def main():
     parser.add_argument('--gpu', default=None, help='index of gpus to use')
     parser.add_argument('--ngpu', type=int, default=8, help='number of gpus to use')
     parser.add_argument('--seed', type=int, default=117, help='random seed (default: 1)')
-    parser.add_argument('--model_root', default='~/.torch/models/', help='folder to save the model')
-    parser.add_argument('--data_root', default='/data/public_dataset/pytorch/', help='folder to save the model')
+    parser.add_argument('--model_root', default='~/experiment1/models/', help='folder to save the model')
+    parser.add_argument('--data_root', default='~/experiment1/data', help='folder to save the model')
     parser.add_argument('--logdir', default='log/default', help='folder to save to the log')
 
     parser.add_argument('--input_size', type=int, default=224, help='input size of image')
@@ -25,7 +25,8 @@ def main():
     parser.add_argument('--overflow_rate', type=float, default=0.0, help='overflow rate')
     args = parser.parse_args()
 
-    args.gpu = misc.auto_select_gpu(utility_bound=0, num_gpu=args.ngpu, selected_gpus=args.gpu)
+    #args.gpu = misc.auto_select_gpu(utility_bound=0, num_gpu=args.ngpu, selected_gpus=args.gpu)
+    args.gpu = '0' # added
     args.ngpu = len(args.gpu)
     misc.ensure_dir(args.logdir)
     args.model_root = misc.expand_user(args.model_root)
